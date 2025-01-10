@@ -1,16 +1,26 @@
-<p style="color: green"><%= notice %></p>
+<div class="main-container">
+  <h1>TO DO List - Ruby</h1>
+  <h1>Minhas Listas</h1>
 
-<% content_for :title, "Lists" %>
+  <div class="categories-container">
+    <% @categories_with_lists.each do |category| %>
+      <div class="category-item">
+        <h2><%= category.name %></h2>
+        <% if category.lists.any? %>
+          <ul>
+            <% category.lists.each do |list| %>
+              <li><%= link_to list.name, list_path(list), class: "list-button" %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>Sem listas nesta categoria.</p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
-<h1>Lists</h1>
-
-<div id="lists">
-  <% @lists.each do |list| %>
-    <%= render list %>
-    <p>
-      <%= link_to "Show this list", list %>
-    </p>
-  <% end %>
+  <div class="buttons-container">
+    <%= link_to "Nova Lista", new_list_path, class: "btn btn-primary" %>
+    <%= link_to "Nova Categoria", new_category_path, class: "btn btn-secondary" %>
+  </div>
 </div>
-
-<%= link_to "New list", new_list_path %>

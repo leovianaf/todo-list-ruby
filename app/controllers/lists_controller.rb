@@ -3,11 +3,13 @@ class ListsController < ApplicationController
 
   # GET /lists or /lists.json
   def index
-    @lists = List.all
+    @categories_with_lists = Category.includes(:lists).all
   end
-
+  
   # GET /lists/1 or /lists/1.json
   def show
+    @list = List.find(params[:id])
+    @items = @list.items
   end
 
   # GET /lists/new
@@ -60,11 +62,11 @@ class ListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
-      @list = List.find(params.expect(:id))
+      @list = List.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def list_params
-      params.expect(list: [ :name, :category_id ])
+      params.require(:list).permit(:name, :category_id)
     end
 end

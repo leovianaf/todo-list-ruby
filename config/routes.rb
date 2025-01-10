@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   root "lists#index"
-  
+
   resources :item_tags
   resources :tags
   resources :items
-  resources :lists
+  resources :lists do
+    resources :items, only: [:new, :create, :update, :destroy]
+  end
   resources :categories
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
