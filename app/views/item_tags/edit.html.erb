@@ -1,0 +1,12 @@
+<% content_for :title, "Editing item tag" %>
+
+<h1>Editing item tag</h1>
+
+<%= render "form", item_tag: @item_tag %>
+
+<br>
+
+<div>
+  <%= link_to "Show this item tag", @item_tag %> |
+  <%= link_to "Back to item tags", item_tags_path %>
+</div>

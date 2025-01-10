@@ -1,0 +1,11 @@
+<% content_for :title, "New item tag" %>
+
+<h1>New item tag</h1>
+
+<%= render "form", item_tag: @item_tag %>
+
+<br>
+
+<div>
+  <%= link_to "Back to item tags", item_tags_path %>
+</div>
