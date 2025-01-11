@@ -4,15 +4,23 @@
   <div class="items-container">
     <ul>
       <% @items.each do |item| %>
-        <li class="<%= 'done' if item.is_done %>">
-          <%= check_box_tag "item_#{item.id}", item.id, item.is_done, class: '=begin  =enditem-checkbox' %>
-          <%= item.description %>
-          <%= link_to "X", item_path(item), method: :delete, data: { confirm: "Tem certeza de que deseja excluir este item?" }, class: "btn btn-danger btn-sm" %>
+        <li class="item-row <%= 'done' if item.is_done %>" id="item_<%= item.id %>">
+          <%= form_with url: toggle_done_list_item_path(@list, item), method: :patch, class: "inline-form", local: true do %>
+            <button type="submit" class="btn btn-link">
+              <%= item.is_done ? "Desmarcar" : "Marcar como feito" %>
+            </button>
+          <% end %>
+          <span class="item-description"><%= item.description %></span>
+          <%= form_with url: list_item_path(@list, item), method: :delete, class: "inline-form", local: true do %>
+            <button type="submit" class="btn btn-danger btn-sm" data-confirm="Tem certeza de que deseja excluir este item?">X</button>
+          <% end %>
         </li>
       <% end %>
     </ul>
   </div>
 
-  <%= link_to "Voltar para listas", lists_path, class: "btn btn-secondary" %>
-  <%= link_to "Criar Novo Item", new_list_item_path(@list), class: "btn btn-primary" %>
+  <div class="buttons-container">
+    <%= link_to "Voltar para listas", lists_path, class: "btn btn-secondary" %>
+    <%= link_to "Adicionar Novo Item", new_list_item_path(@list), class: "btn btn-primary" %>
+  </div>
 </div>

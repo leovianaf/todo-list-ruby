@@ -3,9 +3,12 @@ Rails.application.routes.draw do
 
   resources :item_tags
   resources :tags
-  resources :items
   resources :lists do
-    resources :items, only: [:new, :create, :update, :destroy]
+    resources :items, only: [:new, :create, :update, :destroy] do
+      member do
+        patch :toggle_done
+      end
+    end
   end
   resources :categories
 
