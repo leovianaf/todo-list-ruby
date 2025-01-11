@@ -51,7 +51,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # Enable faster development by only reloading code that changed
-  gem 'listen', '~> 3.7'
+  gem "rails_live_reload"
 end
 
 group :development do
