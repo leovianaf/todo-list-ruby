@@ -32,6 +32,9 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Adjust permissions for bundle install
+RUN chown -R 1000:1000 /usr/local/bundle
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \

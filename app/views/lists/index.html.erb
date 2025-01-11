@@ -1,15 +1,15 @@
 <div class="main-container">
   <h1>TO DO List - Ruby</h1>
-  <h1>Minhas Listas</h1>
+  <h2>Minhas Listas</h2>
 
   <div class="categories-container">
     <% @categories_with_lists.each do |category| %>
       <div class="category-item">
-        <h2><%= category.name %></h2>
+        <h3><%= category.name %></h3>
         <% if category.lists.any? %>
           <ul>
             <% category.lists.each do |list| %>
-              <li><%= link_to list.name, list_path(list), class: "list-button" %></li>
+              <li><%= link_to list.name, list_path(list) %></li>
             <% end %>
           </ul>
         <% else %>

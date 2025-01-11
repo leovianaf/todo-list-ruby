@@ -3,10 +3,13 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  
+  # Code is reloaded between requests.
   config.cache_classes = false
 
   config.action_view.cache_template_loading = false
+
+  # Enable hot-reloading.
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true
