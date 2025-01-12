@@ -1,26 +1,51 @@
 <div class="main-container">
-  <h2><%= @list.name %></h2>
+  <h2 class="list-header">
+    <span class="list-name"><%= @list.name %></span>
+    <div class="action-buttons">
+      <%= form_with url: edit_list_path(@list), method: :get, class: "inline-form", local: true do %>
+        <button type="submit" class="edit-icon" title="Editar Lista">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+      <% end %>
+      <%= form_with url: list_path(@list), method: :delete, class: "inline-form", local: true do %>
+        <button type="submit" class="delete-icon" data-confirm="Tem certeza que deseja excluir esta lista?" title="Excluir Lista">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      <% end %>
+    </div>
+  </h2>
 
   <div class="items-container">
     <ul>
       <% @items.each do |item| %>
         <li class="item-row <%= 'done' if item.is_done %>" id="item_<%= item.id %>">
           <%= form_with url: toggle_done_list_item_path(@list, item), method: :patch, class: "inline-form", local: true do %>
-            <button type="submit" class="btn btn-link">
-              <%= item.is_done ? "Desmarcar" : "Marcar como feito" %>
+            <button type="submit" class="toggle-done-icon" title="Marcar/Desmarcar">
+              <% if item.is_done %>
+                <i class="fas fa-check-circle"></i>
+              <% end %>
             </button>
           <% end %>
           <span class="item-description"><%= item.description %></span>
-          <%= form_with url: list_item_path(@list, item), method: :delete, class: "inline-form", local: true do %>
-            <button type="submit" class="btn btn-danger btn-sm" data-confirm="Tem certeza de que deseja excluir este item?">X</button>
-          <% end %>
+          <div class="action-buttons">
+            <%= form_with url: edit_list_item_path(@list, item), method: :get, class: "inline-form", local: true do %>
+              <button type="submit" class="edit-icon" title="Editar Item">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            <% end %>
+            <%= form_with url: list_item_path(@list, item), method: :delete, class: "inline-form", local: true do %>
+              <button type="submit" class="delete-icon" data-confirm="Tem certeza que deseja excluir este item?" title="Excluir Item">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            <% end %>
+          </div>
         </li>
       <% end %>
     </ul>
   </div>
 
   <div class="buttons-container">
-    <%= link_to "Voltar para listas", lists_path, class: "btn btn-secondary" %>
+    <%= link_to "Voltar", lists_path, class: "btn btn-secondary" %>
     <%= link_to "Adicionar Novo Item", new_list_item_path(@list), class: "btn btn-primary" %>
   </div>
 </div>

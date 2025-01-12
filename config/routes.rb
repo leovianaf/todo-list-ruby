@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   resources :item_tags
   resources :tags
   resources :lists do
-    resources :items, only: [:new, :create, :update, :destroy] do
+    resources :items, only: [:new, :create, :update, :destroy, :edit] do
       member do
         patch :toggle_done
       end
     end
   end
+
   resources :categories, except: [:index, :show]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
