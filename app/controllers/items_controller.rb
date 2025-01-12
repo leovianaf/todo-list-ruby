@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_list
-  before_action :set_item, only: %i[update destroy toggle_done]
+  before_action :set_item, only: %i[edit update destroy toggle_done]
 
   def new
     @new_item = @list.items.build
@@ -17,12 +17,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  # GET /lists/:list_id/items/:id/edit
+  def edit
+  end
+
   # PATCH /lists/:list_id/items/:id
   def update
     if @item.update(item_params)
       redirect_to @list, notice: "Item atualizado com sucesso."
     else
-      render 'lists/show', alert: "Erro ao atualizar item."
+      render :edit, alert: "Erro ao atualizar item."
     end
   end
 

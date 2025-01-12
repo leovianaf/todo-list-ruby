@@ -5,7 +5,21 @@
   <div class="categories-container">
     <% @categories_with_lists.each do |category| %>
       <div class="category-item">
-        <h3><%= category.name %></h3>
+        <h3 class="category-header">
+          <span class="category-name"><%= category.name %></span>
+          <div class="action-buttons">
+            <%= form_with url: edit_category_path(category), method: :get, class: "inline-form", local: true do %>
+              <button type="submit" class="edit-icon" title="Editar Categoria">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            <% end %>
+            <%= form_with url: category_path(category), method: :delete, class: "inline-form", local: true do %>
+              <button type="submit" class="delete-icon" data-confirm="Tem certeza que deseja excluir esta categoria?" title="Excluir Categoria">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            <% end %>
+          </div>
+        </h3>
         <% if category.lists.any? %>
           <ul>
             <% category.lists.each do |list| %>
@@ -21,6 +35,6 @@
 
   <div class="buttons-container">
     <%= link_to "Nova Lista", new_list_path, class: "btn btn-primary" %>
-    <%= link_to "Nova Categoria", new_category_path, class: "btn btn-secondary" %>
+    <%= link_to "Nova Categoria", new_category_path, class: "btn btn-other" %>
   </div>
 </div>

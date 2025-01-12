@@ -1,12 +1,15 @@
-<% content_for :title, "Editing category" %>
+<div class="main-container">
+  <h2>Editar Categoria</h2>
 
-<h1>Editing category</h1>
+  <%= form_with(model: @category, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :name, "Nome da Categoria" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Digite o novo nome da categoria" %>
+    </div>
 
-<%= render "form", category: @category %>
-
-<br>
-
-<div>
-  <%= link_to "Show this category", @category %> |
-  <%= link_to "Back to categories", categories_path %>
+    <div class="buttons-container">
+      <%= link_to "Cancelar", lists_path, class: "btn btn-danger" %>
+      <%= form.submit "Atualizar Categoria", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>

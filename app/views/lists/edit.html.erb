@@ -1,12 +1,20 @@
-<% content_for :title, "Editing list" %>
+<div class="main-container">
+  <h2>Editando Lista</h2>
 
-<h1>Editing list</h1>
+  <%= form_with(model: @list, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :name, "Nome da Lista" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Digite o nome da lista" %>
+    </div>
 
-<%= render "form", list: @list %>
+    <div class="form-group">
+      <%= form.label :category_id, "Categoria" %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Selecione uma categoria" }, class: "form-control" %>
+    </div>
 
-<br>
-
-<div>
-  <%= link_to "Show this list", @list %> |
-  <%= link_to "Back to lists", lists_path %>
+    <div class="buttons-container">
+      <%= link_to "Cancelar", @list, class: "btn btn-danger" %>
+      <%= form.submit "Salvar Alterações", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
