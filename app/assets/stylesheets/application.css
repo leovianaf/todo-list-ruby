@@ -35,6 +35,18 @@ h1, h2 {
   margin-bottom: 40px;
 }
 
+.category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.category-name {
+  flex-grow: 1;
+  text-align: left;
+}
+
 .category-item {
   background-color: #fff;
   border-radius: 8px;
@@ -48,10 +60,13 @@ h1, h2 {
 .category-item ul {
   list-style: none;
   padding: 0;
+  margin: 0;
+  text-align: left;
 }
 
 .category-item li {
-  margin-top: 10px;
+  margin: 8px 0;
+  text-align: left;
 }
 
 .category-item a {
@@ -65,6 +80,66 @@ h1, h2 {
 
 .category-item a:hover {
   background-color: #0056b3;
+}
+
+.category-item h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.edit-icon, .delete-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-icon {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #28a745;
+  color: white;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+  outline: none; 
+}
+
+.edit-icon:hover {
+  background-color: #218838;
+  transform: scale(1.1);
+}
+
+.delete-icon {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  outline: none; 
+}
+
+.delete-icon:hover {
+  background-color: #c82333;
+  transform: scale(1.1);
+}
+
+.edit-icon i, .delete-icon i {
+  pointer-events: none;
 }
 
 /* Forms */
