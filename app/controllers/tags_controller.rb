@@ -22,15 +22,10 @@ class TagsController < ApplicationController
   # POST /tags or /tags.json
   def create
     @tag = Tag.new(tag_params)
-
-    respond_to do |format|
-      if @tag.save
-        format.html { redirect_to @tag, notice: "Tag was successfully created." }
-        format.json { render :show, status: :created, location: @tag }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tag.errors, status: :unprocessable_entity }
-      end
+    if @tag.save
+      redirect_to lists_path, notice: "Tag criada com sucesso."
+    else
+      render :new, alert: "Erro ao criar tag."
     end
   end
 
@@ -60,11 +55,11 @@ class TagsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tag
-      @tag = Tag.find(params.expect(:id))
+      @tag = Tag.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def tag_params
-      params.expect(tag: [ :name ])
+      params.require(:tag).permit(:name)
     end
 end

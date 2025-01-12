@@ -53,6 +53,6 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:description, :is_done)
+      params.require(:item).permit(:description, :is_done, tag_ids: [])
     end
 end

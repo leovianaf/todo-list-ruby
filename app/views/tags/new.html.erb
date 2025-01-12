@@ -1,11 +1,15 @@
-<% content_for :title, "New tag" %>
+<div class="main-container">
+  <h2>Criar Nova Tag</h2>
 
-<h1>New tag</h1>
+  <%= form_with(model: @tag, local: true) do |form| %>
+    <div class="form-group">
+      <%= form.label :name, "Nome da Tag" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Digite o nome da tag" %>
+    </div>
 
-<%= render "form", tag: @tag %>
-
-<br>
-
-<div>
-  <%= link_to "Back to tags", tags_path %>
+    <div class="buttons-container">
+      <%= link_to "Voltar", @list, class: "btn btn-secondary" %>
+      <%= form.submit "Criar Tag", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>

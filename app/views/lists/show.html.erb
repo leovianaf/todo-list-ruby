@@ -19,14 +19,21 @@
     <ul>
       <% @items.each do |item| %>
         <li class="item-row <%= 'done' if item.is_done %>" id="item_<%= item.id %>">
-          <%= form_with url: toggle_done_list_item_path(@list, item), method: :patch, class: "inline-form", local: true do %>
-            <button type="submit" class="toggle-done-icon" title="Marcar/Desmarcar">
-              <% if item.is_done %>
-                <i class="fas fa-check-circle"></i>
+          <div class="item-content">
+            <%= form_with url: toggle_done_list_item_path(@list, item), method: :patch, class: "inline-form", local: true do %>
+              <button type="submit" class="toggle-done-icon" title="Marcar/Desmarcar">
+                <% if item.is_done %>
+                  <i class="fas fa-check-circle"></i>
+                <% end %>
+              </button>
+            <% end %>
+            <span class="item-description"><%= item.description %></span>
+            <div class="tags">
+              <% item.tags.each do |tag| %>
+                <span class="tag" style="background-color: <%= tag_color(tag) %>"><%= tag.name %></span>
               <% end %>
-            </button>
-          <% end %>
-          <span class="item-description"><%= item.description %></span>
+            </div>
+          </div>
           <div class="action-buttons">
             <%= form_with url: edit_list_item_path(@list, item), method: :get, class: "inline-form", local: true do %>
               <button type="submit" class="edit-icon" title="Editar Item">
@@ -46,6 +53,7 @@
 
   <div class="buttons-container">
     <%= link_to "Voltar", lists_path, class: "btn btn-secondary" %>
+    <%= link_to "Criar Nova Tag", new_tag_path, class: "btn btn-other" %>
     <%= link_to "Adicionar Novo Item", new_list_item_path(@list), class: "btn btn-primary" %>
   </div>
 </div>

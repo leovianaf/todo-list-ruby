@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root "lists#index"
 
-  resources :item_tags
-  resources :tags
+  resources :tags, only: [:new, :create]
   resources :lists do
     resources :items, only: [:new, :create, :update, :destroy, :edit] do
       member do
