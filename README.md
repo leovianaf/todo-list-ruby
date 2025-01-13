@@ -48,22 +48,24 @@ Acesse o projeto no deploy em: **[todo-list-ruby](#)**
 
 2. Crie um arquivo `.env` na raiz do projeto preenchendo com base no `.env.example`
 
-3. Faça o build da aplicação com o Docker:
+3. Remova os comentários do serviço `db` no `docker-compose.yml`
+
+4. Faça o build da aplicação com o Docker:
    ```bash
    docker-compose up --build
    ```
 
-3. Acesse o container da aplicação:
+5. Acesse o container da aplicação:
    ```bash
    docker-compose exec web bash
    ```
 
-4. Rode as migrações do banco de dados:
+6. Rode as migrações do banco de dados:
    ```bash
    bin/rails db:migrate
    ```
 
-5. Acesse no navegador: **http://localhost**
+7. Acesse no navegador: **http://localhost**
 
 ---
 
