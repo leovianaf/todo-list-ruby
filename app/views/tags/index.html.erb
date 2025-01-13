@@ -1,16 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<div class="main-container">
+  <h2>Gerenciar Tags</h2>
 
-<% content_for :title, "Tags" %>
+  <div class="tags-container">
+    <ul>
+      <% @tags.each do |tag| %>
+        <li class="tag-row" id="tag_<%= tag.id %>">
+          <span class="tag-name"><%= tag.name %></span>
+          <div class="action-buttons">
+            <%= form_with url: edit_tag_path(tag), method: :get, class: "inline-form", local: true do %>
+              <button type="submit" class="edit-icon" title="Editar Tag">
+                <i class="fas fa-pencil-alt"></i>
+              </button>
+            <% end %>
+            <%= form_with url: tag_path(tag), method: :delete, class: "inline-form", local: true do %>
+              <button type="submit" class="delete-icon" data-confirm="Tem certeza que deseja excluir esta tag?" title="Excluir Tag">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<h1>Tags</h1>
-
-<div id="tags">
-  <% @tags.each do |tag| %>
-    <%= render tag %>
-    <p>
-      <%= link_to "Show this tag", tag %>
-    </p>
-  <% end %>
+  <div class="buttons-container">
+    <%= link_to "Voltar", lists_path, class: "btn btn-secondary" %>
+    <%= link_to "Criar Nova Tag", new_tag_path, class: "btn btn-primary" %>
+  </div>
 </div>
-
-<%= link_to "New tag", new_tag_path %>
