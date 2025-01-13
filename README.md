@@ -46,9 +46,7 @@ Acesse o projeto no deploy em: **[todo-list-ruby](#)**
    cd todo-list-ruby
    ```
 
-2. Crie um arquivo `.env` na raiz do projeto preenchendo com base no `.env.example`
-
-3. Faça o build da aplicação com o Docker:
+2. Faça o build da aplicação com o Docker:
    ```bash
    docker-compose up --build
    ```
