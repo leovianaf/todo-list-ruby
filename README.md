@@ -23,7 +23,7 @@ Este é um projeto de gerenciamento de tarefas com funcionalidades básicas e op
 
 ## **🌐 Deploy**
 
-Acesse o projeto no deploy em: **[todo-list-ruby](#)**
+Acesse o projeto no deploy em: **[todo-list-ruby](https://todo-list-ruby-production.up.railway.app/)**
 
 ---
 
